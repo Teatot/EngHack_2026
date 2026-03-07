@@ -3,6 +3,7 @@ import cors from "cors";
 import express from "express";
 import geminiRouter from "./routes/geminiAPI.route.js";
 import uploaderRouter from "./routes/uploader.route.js";
+import logScrapeRouter from "./routes/logScrape.route.js";
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -15,6 +16,9 @@ app.use("/api/prompt-gemini", geminiRouter);
 
 // Route for Uploader
 app.use("/api/uploader", uploaderRouter);
+
+// Route for Scraping
+app.use("/api/scrape", logScrapeRouter);
 
 app.listen(port, () => {
   console.log(`Backend listening on port ${port}`);
