@@ -1,8 +1,10 @@
 import React from 'react';
 import { GoogleGenAI } from '@google/genai';
 
-async function callGenAI(element: React.MouseEvent<HTMLButtonElement>) {
-  const genAI = new GoogleGenAI( {apiKey: "AIzaSyC048cR9oGmeUdTz2T5w9kdaFZxPV9IVYw"} );
+
+async function callGenAI() {
+  const api_key = import.meta.env.VITE_GEMINI_API_KEY;
+  const genAI = new GoogleGenAI( {apiKey: api_key} );
   
   const response = await genAI.models.generateContent({
     model: 'gemini-3.1-flash-lite-preview',
@@ -12,9 +14,9 @@ async function callGenAI(element: React.MouseEvent<HTMLButtonElement>) {
 };
 
 const APIButton: React.FC = () => {
-  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = async () => {
     console.log('Button clicked!');
-    await callGenAI(event);
+    await callGenAI();
   };
 
   return (
