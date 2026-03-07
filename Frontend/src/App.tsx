@@ -1,32 +1,36 @@
-import React from 'react';
-import { GoogleGenAI } from '@google/genai';
+import { useState } from "react";
 
-
-async function callGenAI() {
-  const api_key = import.meta.env.VITE_GEMINI_API_KEY;
-  const genAI = new GoogleGenAI( {apiKey: api_key} );
-  
-  const response = await genAI.models.generateContent({
-    model: 'gemini-3.1-flash-lite-preview',
-    contents: "Explain how AI can be used in a Chrome extension.",
-  });
-  console.log(response.text);
-};
-
-const APIButton: React.FC = () => {
-  const handleClick = async () => {
-    console.log('Button clicked!');
-    await callGenAI();
-  };
-
-  return (
-    <button onClick={handleClick}>Test API Button</button>
-  )
-};
+interface BackendResult {
+  recommendation: string;
+  links: string[];
+  linkNum: number;
+}
 
 export default function App() {
+  const [response, setResponse] = useState<BackendResult | null>(null);
+
+  async function handleClick() {
+    const res = await fetch("http://localhost:3000/api/prompt-gemini", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        question: "I want to get good skills in web development. Give me a recommendation and provide links to resources I can use.",
+      }),
+    });
+
+    if (!res.ok) {
+      console.error("Request failed", res.status);
+      return;
+    }
+
+    const data = (await res.json()) as { result: BackendResult };
+    console.log("Backend result:", data.result);
+    setResponse(data.result);
+  }
+
   return (
-<<<<<<< HEAD
     <section className="app-card">
       <div className="app-card__header">
         <p className="eyebrow">Injected App</p>
@@ -37,7 +41,31 @@ export default function App() {
         This is the React application rendered inside the Chrome extension
         shell.
       </p>
-        <APIButton />
+
+      <button onClick={handleClick}>Get study recommendation</button>
+
+      {response && (
+        <div style={{ marginTop: "1rem" }}>
+          <h2>Recommendation</h2>
+          <p>{response.recommendation}</p>
+
+          {response.links.length > 0 && (
+            <div style={{ marginTop: "0.5rem" }}>
+              <h3>Links ({response.linkNum})</h3>
+              <ul>
+                {response.links.map((link) => (
+                  <li key={link}>
+                    <a href={link} target="_blank" rel="noreferrer">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+
       <div className="app-grid">
         <article className="panel">
           <h2>Frontend</h2>
@@ -48,10 +76,6 @@ export default function App() {
           <p>Express and TypeScript expose the API your extension can call.</p>
         </article>
       </div>
-=======
-    <section>
-      <div>Content</div>
->>>>>>> 480419b (refactor(backend): Add new libraries and basic framework for uploader route)
     </section>
   );
 }
