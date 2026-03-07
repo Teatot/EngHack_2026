@@ -7,7 +7,7 @@ const port = Number(process.env.PORT) || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/health", (_req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({
     status: "ok",
     message: "Backend is running"
