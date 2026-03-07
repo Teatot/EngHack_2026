@@ -1,5 +1,13 @@
 import { useState } from "react";
 import { BackendResult, ScrapedPage } from "./types/general_interfaces";
+import { Home } from "./pages/Home";
+
+interface BackendResult {
+  recommendation: string;
+  links: string[];
+  linkNum: number;
+}
+
 
 export default function App() {
   const [response, setResponse] = useState<BackendResult | null>(null);
