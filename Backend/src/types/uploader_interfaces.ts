@@ -15,3 +15,7 @@ export interface MultipleUploadMessageStruct {
     message: string;
     files: SingleMessage[];
 }
+
+export interface GetUploadedFileNames {
+    files: string[];
+}
