@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Full Stack Extension Shell",
+  "version": "1.0.0",
+  "description": "Chrome extension shell that hosts the React frontend for the full stack app.",
+  "action": {
+    "default_title": "Open App",
+    "default_popup": "index.html"
+  }
+}
