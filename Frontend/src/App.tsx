@@ -42,7 +42,7 @@ export default function App() {
         shell.
       </p>
 
-      <button onClick={handleClick}>Get study recommendation</button>
+        <button onClick={handleClick}>Get study recommendation</button>
 
       {response && (
         <div style={{ marginTop: "1rem" }}>

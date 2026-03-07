@@ -1,5 +1,6 @@
 export interface Data {
     question: string;
+    file: string;
 }
   
 export interface Response {
