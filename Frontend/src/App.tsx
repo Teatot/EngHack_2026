@@ -15,7 +15,7 @@ export default function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        question: "I want to get good skills in web development. Give me a recommendation and provide links to resources I can use.",
+        question: "Compare my uploaded pdf resume and the website for the job I'm looking at. Give me a recommendation on how I can be a better match for this job. and provide links to resources I can use.",
       }),
     });
 
@@ -93,7 +93,13 @@ export default function App() {
 
   return (
     <section className="app-card">
-      
+      <button onClick={handleScrapeTab}>
+        Scrap page
+      </button>
+
+      <button onClick={handleClick}>
+        Send request
+      </button>
     </section>
   );
 }
