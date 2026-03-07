@@ -29,7 +29,7 @@ export default function App() {
     console.log("Backend result:", data.result);
     setResponse(data.result);
   }
-
+  
   return (
     <section className="app-card">
       <div className="app-card__header">
