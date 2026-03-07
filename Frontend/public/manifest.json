@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Full Stack Extension Shell",
+  "name": "Job Analyzer",
   "version": "1.0.0",
   "description": "Chrome extension shell that hosts the React frontend for the full stack app.",
   "action": {

@@ -26,6 +26,7 @@ const APIButton: React.FC = () => {
 
 export default function App() {
   return (
+<<<<<<< HEAD
     <section className="app-card">
       <div className="app-card__header">
         <p className="eyebrow">Injected App</p>
@@ -47,6 +48,10 @@ export default function App() {
           <p>Express and TypeScript expose the API your extension can call.</p>
         </article>
       </div>
+=======
+    <section>
+      <div>Content</div>
+>>>>>>> 480419b (refactor(backend): Add new libraries and basic framework for uploader route)
     </section>
   );
 }
