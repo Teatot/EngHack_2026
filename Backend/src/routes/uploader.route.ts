@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { upload } from "../helper/utils/initializeStorage.js";
 import { ErrorStruct } from "../types/general_interfaces.js";
-import { MultipleUploadMessageStruct, SingleMessage, SingleUploadMessageStruct } from "../types/uploader_interfaces.js";
+import { GetUploadedFileNames, MultipleUploadMessageStruct, SingleMessage, SingleUploadMessageStruct } from "../types/uploader_interfaces.js";
 import path from "path";
 import fs from "fs/promises";
 
