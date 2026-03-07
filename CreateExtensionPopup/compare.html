@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Compare</title>
+    <link rel="stylesheet" href="compare.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <button class="back-btn" onclick="history.back()">←</button>
+            <h1>Job Match Analysis</h1>
+            <button class="menu-btn">⋮</button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Three Column Layout -->
+            <div class="layout-wrapper">
+                
+                <!-- Left Section - Have -->
+                <section class="section left-section have-column">
+                    <div class="section-header">
+                        <h2>What You Have</h2>
+                        <span class="count-badge">8</span>
+                    </div>
+                    <div class="skills-list">
+                        <details class="skill-detail">
+                            <summary class="skill-tag">JavaScript</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Build a React app</a></li>
+                                    <li><a href="#">Complete Node.js projects</a></li>
+                                    <li><a href="#">Practice algorithms</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag">TypeScript</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Type-safe React components</a></li>
+                                    <li><a href="#">Advanced types project</a></li>
+                                    <li><a href="#">API integration with TS</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag">Node.js</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Express.js API</a></li>
+                                    <li><a href="#">Database integration</a></li>
+                                    <li><a href="#">Authentication system</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag">REST APIs</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">GraphQL implementation</a></li>
+                                    <li><a href="#">API testing tools</a></li>
+                                    <li><a href="#">Microservices architecture</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag">Git</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Git workflows</a></li>
+                                    <li><a href="#">Branching strategies</a></li>
+                                    <li><a href="#">Code review practices</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag">Agile</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Scrum master certification</a></li>
+                                    <li><a href="#">Kanban projects</a></li>
+                                    <li><a href="#">Team leadership</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag">Problem Solving</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">LeetCode challenges</a></li>
+                                    <li><a href="#">System design</a></li>
+                                    <li><a href="#">Debugging techniques</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag">Team Collaboration</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Open source contributions</a></li>
+                                    <li><a href="#">Mentoring programs</a></li>
+                                    <li><a href="#">Cross-functional projects</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- Center - Job Description & Progress -->
+                <section class="section center-section">
+                    <div class="job-circle-wrapper">
+                        <!-- Progress Circle with Requirements Inside -->
+                        <div class="progress-ring">
+                            <svg viewBox="0 0 200 200">
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="100" cy="100" r="85" class="ring-bg" />
+                                <circle cx="100" cy="100" r="85" class="ring-progress" />
+                            </svg>
+                            <div class="ring-content">
+                                <div class="percentage">72%</div>
+                                <div class="match-text">Match</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 72%;"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Right Section - Lack -->
+                <section class="section right-section lack-column">
+                    <div class="section-header">
+                        <h2>What's Missing</h2>
+                        <span class="count-badge danger">7</span>
+                    </div>
+                    <div class="skills-list">
+                        <details class="skill-detail">
+                            <summary class="skill-tag danger">Python</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Data science projects</a></li>
+                                    <li><a href="#">Machine learning basics</a></li>
+                                    <li><a href="#">Web scraping with Python</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag danger">Machine Learning</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">TensorFlow tutorials</a></li>
+                                    <li><a href="#">Kaggle competitions</a></li>
+                                    <li><a href="#">Neural network projects</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag danger">AWS</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">AWS certification prep</a></li>
+                                    <li><a href="#">Serverless architecture</a></li>
+                                    <li><a href="#">Cloud deployment projects</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag danger">Docker</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Container orchestration</a></li>
+                                    <li><a href="#">Docker Compose projects</a></li>
+                                    <li><a href="#">CI/CD pipelines</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag danger">Kubernetes</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">K8s certification</a></li>
+                                    <li><a href="#">Microservices deployment</a></li>
+                                    <li><a href="#">Service mesh concepts</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag danger">CI/CD</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Jenkins pipelines</a></li>
+                                    <li><a href="#">GitHub Actions</a></li>
+                                    <li><a href="#">Automated testing</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="skill-detail">
+                            <summary class="skill-tag danger">GraphQL</summary>
+                            <div class="improvement-content">
+                                <p>To further improve your skills:</p>
+                                <ul>
+                                    <li><a href="#">Apollo Server setup</a></li>
+                                    <li><a href="#">Schema design</a></li>
+                                    <li><a href="#">Client-side integration</a></li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>
