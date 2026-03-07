@@ -1,18 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
+import { Data, Response } from "../../types/gemini_interfaces.js";
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GOOGLE_API_KEY,
 });
-
-export interface Data {
-  question: string;
-}
-
-export interface Response {
-  recommendation: string;
-  links: string[];
-  linkNum: number;
-}
 
 export async function sendRequest(data: Data) {
   const prompt = data.question;
