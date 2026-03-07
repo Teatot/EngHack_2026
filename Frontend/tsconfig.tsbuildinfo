@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/extensionshell.tsx","./src/chrome.d.ts","./src/main.tsx","./src/scrap/scrapedom.ts","./src/types/general_interfaces.ts"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/extensionshell.tsx","./src/chrome.d.ts","./src/main.tsx","./src/api/uploaderapi.ts","./src/components/fileinput.tsx","./src/helper/util/fileoperations.ts","./src/pages/home.tsx","./src/scrap/scrapedom.ts","./src/types/general_interfaces.ts"],"version":"5.9.3"}

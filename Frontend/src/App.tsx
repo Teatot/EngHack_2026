@@ -2,13 +2,6 @@ import { useState } from "react";
 import { BackendResult, ScrapedPage } from "./types/general_interfaces";
 import { Home } from "./pages/Home";
 
-interface BackendResult {
-  recommendation: string;
-  links: string[];
-  linkNum: number;
-}
-
-
 export default function App() {
   const [response, setResponse] = useState<BackendResult | null>(null);
   const [scrapeResult, setScrapeResult] = useState<ScrapedPage | null>(null);
@@ -101,69 +94,7 @@ export default function App() {
 
   return (
     <section className="app-card">
-      <div className="app-card__header">
-        <p className="eyebrow">Injected App</p>
-        <span className="status-pill">API Ready</span>
-      </div>
-      <h1>Classic Full Stack App</h1>
-      <p className="lead">
-        This is the React application rendered inside the Chrome extension
-        shell.
-      </p>
-
-      <button onClick={handleClick}>Get study recommendation</button>
-
-      <button
-        style={{ marginLeft: "0.75rem" }}
-        onClick={handleScrapeTab}
-        disabled={isScraping}
-      >
-        {isScraping ? "Scraping current tab..." : "Scrape current tab"}
-      </button>
-
-      {response && (
-        <div style={{ marginTop: "1rem" }}>
-          <h2>Recommendation</h2>
-          <p>{response.recommendation}</p>
-
-          {response.links.length > 0 && (
-            <div style={{ marginTop: "0.5rem" }}>
-              <h3>Links ({response.linkNum})</h3>
-              <ul>
-                {response.links.map((link) => (
-                  <li key={link}>
-                    <a href={link} target="_blank" rel="noreferrer">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      )}
-
-      {scrapeError && (
-        <div style={{ marginTop: "1rem", color: "red" }}>{scrapeError}</div>
-      )}
-
-      {scrapeResult && (
-        <div style={{ marginTop: "1rem" }}>
-          <h2>Scraped Current Tab</h2>
-          
-        </div>
-      )}
-
-      <div className="app-grid">
-        <article className="panel">
-          <h2>Frontend</h2>
-          <p>Vite and React power the extension popup experience.</p>
-        </article>
-        <article className="panel">
-          <h2>Backend</h2>
-          <p>Express and TypeScript expose the API your extension can call.</p>
-        </article>
-      </div>
+      
     </section>
   );
 }
