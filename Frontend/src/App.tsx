@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Home } from "./pages/Home";
 
 interface BackendResult {
   recommendation: string;
   links: string[];
   linkNum: number;
 }
+
 
 export default function App() {
   const [response, setResponse] = useState<BackendResult | null>(null);
@@ -32,7 +34,7 @@ export default function App() {
 
   return (
     <section>
-      <div>Content</div>
+      <Home/>
     </section>
   );
 }
