@@ -15,8 +15,7 @@ export default function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        question:
-          "I want to get good skills in web development. Give me a recommendation and provide links to resources I can use.",
+        question: "I want to get good skills in web development. Give me a recommendation and provide links to resources I can use.",
       }),
     });
 

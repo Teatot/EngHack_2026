@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { upload } from "../helper/utils/initializeStorage.js";
 import { ErrorStruct } from "../types/general_interfaces.js";
+import { UploadMessageStruct } from "../types/uploader_interfaces.js";
 import { MultipleUploadMessageStruct, SingleMessage, SingleUploadMessageStruct } from "../types/uploader_interfaces.js";
 
 const router = Router();

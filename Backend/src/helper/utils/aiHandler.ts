@@ -1,4 +1,4 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, createUserContent, createPartFromUri } from "@google/genai";
 import { Data, Response } from "../../types/gemini_interfaces.js";
 
 const ai = new GoogleGenAI({
@@ -7,10 +7,20 @@ const ai = new GoogleGenAI({
 
 export async function sendRequest(data: Data) {
   const prompt = data.question;
+  const filename = data.file;
+
+  const geminiUpload = await ai.files.upload({
+    file: `src/uploads/${filename}`,
+  })
+
+  const fileUri = geminiUpload.uri ?? "";
 
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: prompt,
+    contents: createUserContent([
+      prompt,
+      createPartFromUri(fileUri, "application/pdf"),
+    ]),
     config: {
       responseMimeType: "application/json",
       responseSchema: {
