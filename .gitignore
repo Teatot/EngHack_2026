@@ -7,3 +7,4 @@ coverage/
 *.log
 .vite/
 *.pdf
+Backend/src/scraped/*.json
