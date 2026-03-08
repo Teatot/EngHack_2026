@@ -46,3 +46,9 @@ Note that Chromium-based browsers may work, but we cannot guarantee support.
 * GitHub Copilot by Microsoft, ChatGPT by OpenAI, and Gemini by Google for additional troubleshooting.
 * Designing Hub on Vecteezy.com for the application icon.
 * StackOverflow for relevant code snippets and solutions.
+
+## Team
+* Wentan Su - qwshao@uwaterloo.ca
+* Tony Chen - t52chen@uwaterloo.ca
+* Yohance Nayak - ypnayak@uwaterloo.ca
+* Tito Ngo - da3ngo@uwaterloo.ca
