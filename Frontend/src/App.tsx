@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
+import { Routes, Route, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { BackendResult } from "./types/general_interfaces";
 import { Home } from "./pages/Home";
 import Result from "./pages/Result";
@@ -41,12 +41,18 @@ export default function App() {
     }
   }
 
+  const location = useLocation();
   const isAnalysisDisabled = !response || !fileSelected;
+
+  // Check if we are strictly on the Home or Result page
+  const isStrictHome = location.pathname === "/";
+  const isStrictResult = location.pathname.startsWith("/result");
+  const isNeitherSelected = !isStrictHome && !isStrictResult;
 
   return (
     <section className="app-card">
       <nav className="nav-bar">
-        <NavLink to="/" className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}>Resume Upload</NavLink>
+        <NavLink to="/" end className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}>Resume Upload</NavLink>
         <NavLink
           to={isAnalysisDisabled ? "#" : "/result"}
           onClick={(e) => isAnalysisDisabled && e.preventDefault()}
@@ -58,10 +64,23 @@ export default function App() {
         >
           Analysis
         </NavLink>
+        {isNeitherSelected && (
+          <div style={{
+            marginLeft: 'auto',
+            padding: '8px 16px',
+            color: '#6366f1',
+            fontWeight: 700,
+            fontSize: '1.1rem',
+            letterSpacing: '0.5px',
+            animation: 'pulse 2s infinite'
+          }}>
+            Ready to RobJob?
+          </div>
+        )}
       </nav>
 
       <Routes>
-        <Route path="/" element={
+        <Route path="*" element={
           <Home
             onAnalyze={handleClick}
             loading={loading}
@@ -69,7 +88,7 @@ export default function App() {
             setFileSelected={setFileSelected}
           />
         } />
-        <Route path="/result" element={<Result data={response} />} />
+        <Route path="/result/*" element={<Result data={response} />} />
       </Routes>
     </section>
   );

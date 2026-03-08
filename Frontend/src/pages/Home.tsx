@@ -18,7 +18,6 @@ export const Home = ({ onAnalyze, loading, fileSelected, setFileSelected }: Home
         <section className="home-main-shell">
             <header style={{ marginBottom: '24px', textAlign: 'center' }}>
                 <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1e293b', marginBottom: '4px' }}>Analyze Your Fit</h2>
-                <p style={{ color: '#64748b' }}>Select a resume to compare with the job description</p>
             </header>
 
             <ResumeCarousel
