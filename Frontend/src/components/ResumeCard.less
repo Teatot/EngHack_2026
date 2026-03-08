@@ -1,0 +1,115 @@
+.resumeCard {
+    &__container {
+        flex: 0 0 auto;
+        width: 280px;
+        min-height: 190px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 18px;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease,
+            transform 0.2s ease;
+
+        &:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+            transform: translateY(-2px);
+        }
+    }
+
+    &__titleContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #edf2f7;
+    }
+
+    &__title {
+        margin: 0;
+        color: #1f2937;
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1.5;
+        word-break: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &__deleteButton {
+        flex: 0 0 auto;
+        border: 0;
+        border-radius: 10px;
+        padding: 8px 12px;
+        background: #fee2e2;
+        color: #b91c1c;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            background: #fecaca;
+            color: #991b1b;
+        }
+    }
+
+    &__buttonContainer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: auto;
+        padding-top: 4px;
+    }
+
+    &__selectButton,
+    &__viewButton {
+        border: 0;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, opacity 0.2s ease,
+            box-shadow 0.2s ease, color 0.2s ease;
+    }
+
+    &__selectButton {
+        background: #2563eb;
+        color: #ffffff;
+
+        &:hover {
+            background: #1d4ed8;
+        }
+    }
+
+    &__selectButton--selected {
+        background: #dbeafe;
+        color: #1d4ed8;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        cursor: default;
+
+        &:hover {
+            background: #dbeafe;
+        }
+
+        &:disabled {
+            opacity: 1;
+        }
+    }
+
+    &__viewButton {
+        background: #e2e8f0;
+        color: #334155;
+
+        &:hover {
+            background: #cbd5e1;
+        }
+    }
+}

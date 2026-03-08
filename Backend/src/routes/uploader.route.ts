@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { upload } from "../helper/utils/initializeStorage.js";
 import { ErrorStruct } from "../types/general_interfaces.js";
-import { GetUploadedFileNames, MultipleUploadMessageStruct, SingleMessage, SingleUploadMessageStruct } from "../types/uploader_interfaces.js";
+import { GetUploadedFilesResponse, MultipleUploadMessageStruct, SingleMessage, SingleUploadMessageStruct, UploadedPdfFile } from "../types/uploader_interfaces.js";
 import path from "path";
 import fs from "fs/promises";
 
@@ -57,18 +57,46 @@ router.post("/upload-pdfs", upload.array("pdfs", 10), (req, res) => {
 });
 
 // Bulk Fetch
-router.get("/uploaded-pdf-names", async (req, res) => {
+router.get("/uploaded-pdf", async (req, res) => {
     try {
         const directory = path.resolve(process.cwd(), "src/uploads");
         const allFiles = await fs.readdir(directory);
 
-        const fileNames = allFiles.filter((file) => file.endsWith(".pdf"));
+        const files: UploadedPdfFile[] = allFiles
+            .filter((file) => file.endsWith(".pdf"))
+            .map((file) => ({
+                filename: file,
+                filepath: path.join(directory, file)
+            }));
 
-        const result: GetUploadedFileNames = { files: fileNames };
+        const result: GetUploadedFilesResponse = { files };
 
         return res.status(200).json(result);
     } catch (err) {
-        return res.status(500).json({ error: "Failed to Fetch Uploaded PDF Names"});
+        return res.status(500).json({ error: "Failed to fetch uploaded PDFs" });
+    }
+});
+
+router.delete("/uploaded-pdf", async (req, res) => {
+    try {
+        const { filepath } = req.body as { filepath?: string };
+
+        if (!filepath) {
+            const errorMessage: ErrorStruct = { error: "File path is required" };
+            return res.status(400).json(errorMessage);
+        }
+
+        const resolvedFilePath = path.resolve(filepath);
+
+        await fs.unlink(resolvedFilePath);
+
+        return res.status(200).json({
+            message: "File deleted successfully"
+        });
+    } catch (err) {
+        return res.status(500).json({
+            error: "Failed to delete file"
+        });
     }
 });
 
