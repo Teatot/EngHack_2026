@@ -105,3 +105,23 @@ chrome.runtime.onMessage.addListener(
     sendResponse(result);
   }
 }); 
+
+export function startScrapeWhenReady() {
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    const result = scrapeDom();
+    console.log("Scraped page data:", result);
+  } else {
+    window.addEventListener("DOMContentLoaded", () => {
+      const result = scrapeDom();
+      console.log("Scraped page data:", result);
+    });
+    // window.addEventListener("popstate", () => {
+    //   const result = scrapeDom();
+    //   console.log("Scraped page data on navigation:", result);
+    // });
+    // window.addEventListener("MutationObserver", () => {
+    //   const result = scrapeDom();
+    //   console.log("Scraped page data on navigation:", result);
+    // });
+  }
+}
