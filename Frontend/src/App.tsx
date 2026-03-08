@@ -93,13 +93,7 @@ export default function App() {
 
   return (
     <section className="app-card">
-      <button onClick={handleScrapeTab}>
-        Scrap page
-      </button>
-
-      <button onClick={handleClick}>
-        Send request
-      </button>
+      <Home/>
     </section>
   );
 }

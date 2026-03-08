@@ -16,6 +16,11 @@ export interface MultipleUploadMessageStruct {
     files: SingleMessage[];
 }
 
-export interface GetUploadedFileNames {
-    files: string[];
+export interface UploadedPdfFile {
+    filename: string;
+    filepath: string;
+}
+
+export interface GetUploadedFilesResponse {
+    files: UploadedPdfFile[];
 }
