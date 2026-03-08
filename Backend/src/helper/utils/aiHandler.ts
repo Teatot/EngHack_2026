@@ -4,7 +4,7 @@ import path from "path";
 import { Data, Response } from "../../types/gemini_interfaces.js";
 
 const ai = new GoogleGenAI({
-  apiKey: process.env.GOOGLE_API_KEY,
+  apiKey: process.env.GOOGLE_API_KEY!,
 });
 
 async function getLatestScrapedJson(): Promise<string | null> {
@@ -85,7 +85,15 @@ export async function sendRequest(data: Data) {
                 name: { type: "string" },
                 improvements: {
                   type: "array",
-                  items: { type: "string" },
+                  items: {
+                    type: "object",
+                    properties: {
+                      name: { type: "string" },
+                      link: { type: "string" },
+                    },
+                    required: ["name", "link"],
+                    additionalProperties: false,
+                  },
                 },
               },
               required: ["name", "improvements"],
@@ -100,7 +108,15 @@ export async function sendRequest(data: Data) {
                 name: { type: "string" },
                 improvements: {
                   type: "array",
-                  items: { type: "string" },
+                  items: {
+                    type: "object",
+                    properties: {
+                      name: { type: "string" },
+                      link: { type: "string" },
+                    },
+                    required: ["name", "link"],
+                    additionalProperties: false,
+                  },
                 },
               },
               required: ["name", "improvements"],

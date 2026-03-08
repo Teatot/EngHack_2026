@@ -428,7 +428,9 @@ export default function Result({ data }: ResultProps) {
                                                 <ul style={improvementListStyle}>
                                                     {skill.improvements.map((improvement, i) => (
                                                         <li key={i} style={improvementItemStyle}>
-                                                            <a href="#" style={improvementLinkStyle}>{improvement}</a>
+                                                            <a href={improvement.link} target="_blank" rel="noopener noreferrer" style={improvementLinkStyle}>
+                                                                {improvement.name}
+                                                            </a>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -470,7 +472,9 @@ export default function Result({ data }: ResultProps) {
                                                 <ul style={improvementListStyle}>
                                                     {skill.improvements.map((improvement, i) => (
                                                         <li key={i} style={improvementItemStyle}>
-                                                            <a href="#" style={improvementLinkStyle}>{improvement}</a>
+                                                            <a href={improvement.link} target="_blank" rel="noopener noreferrer" style={improvementLinkStyle}>
+                                                                {improvement.name}
+                                                            </a>
                                                         </li>
                                                     ))}
                                                 </ul>

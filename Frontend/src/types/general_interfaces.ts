@@ -1,6 +1,11 @@
+export interface Improvement {
+  name: string;
+  link: string;
+}
+
 export interface AnalysisSkill {
   name: string;
-  improvements: string[];
+  improvements: Improvement[];
 }
 
 export interface BackendResult {

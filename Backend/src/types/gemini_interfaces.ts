@@ -3,9 +3,14 @@ export interface Data {
     file: string;
 }
 
+export interface Improvement {
+    name: string;
+    link: string;
+}
+
 export interface Skill {
     name: string;
-    improvements: string[];
+    improvements: Improvement[];
 }
 
 export interface Response {
