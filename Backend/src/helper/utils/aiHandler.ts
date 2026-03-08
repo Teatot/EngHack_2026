@@ -7,6 +7,7 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GOOGLE_API_KEY!,
 });
 
+// Helper function to get the most recently scraped JSON file content
 async function getLatestScrapedJson(): Promise<string | null> {
   try {
     const scrapedDir = path.join("src", "scraped");
@@ -39,6 +40,7 @@ async function getLatestScrapedJson(): Promise<string | null> {
   }
 }
 
+// Main function to send a request to the Gemini API with the provided question and file, and return the structured response
 export async function sendRequest(data: Data) {
   const basePrompt = data.question;
   const filename = data.file;

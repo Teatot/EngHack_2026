@@ -11,6 +11,7 @@ router.get("/health", (req, res) => {
     });
 });
 
+// Endpoint to handle POST requests to the Gemini API, receiving a question and file in the request body, sending it to the Gemini API using the sendRequest function, and returning the structured response or an error message if the request fails
 router.post("/", async (req, res) => {
     try {
         const body = req.body as Data;

@@ -9,6 +9,7 @@ interface HomeProps {
     setFileSelected: (fileName: string) => void;
 }
 
+// Component representing the home page of the application, allowing users to select a resume, view uploaded resumes in a carousel, and upload new resumes, with appropriate callbacks for analysis and state management
 export const Home = ({ onAnalyze, loading, fileSelected, setFileSelected }: HomeProps) => {
     // Increment to tell ResumeCarousel to refetch (e.g. after upload)
     const [uploadTrigger, setUploadTrigger] = useState(0);

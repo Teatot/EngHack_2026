@@ -4,12 +4,14 @@ import path from "path";
 
 const router = Router();
 
+// Health check endpoint to verify that the server is running
 router.get("/health", (_req, res) => {
   return res.status(200).json({
     status: "ok",
   });
 });
 
+// Endpoint to receive scraped data as JSON in the request body, save it to a new file in the scraped directory with a timestamped filename, and return a success response with the filename or an error message if the operation fails
 router.post("/send", async (req, res) => {
   try {
     const data = req.body;

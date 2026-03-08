@@ -77,6 +77,7 @@ router.get("/uploaded-pdf", async (req, res) => {
     }
 });
 
+// Bulk Delete
 router.delete("/uploaded-pdf", async (req, res) => {
     try {
         const { filepath } = req.body as { filepath?: string };

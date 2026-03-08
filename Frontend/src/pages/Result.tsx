@@ -6,6 +6,7 @@ interface ResultProps {
     data: BackendResult | null;
 }
 
+// Component representing the result page of the application, displaying the analysis results of a resume against a job description, including match score, keywords present and missing, and recommendations for improvement, with interactive elements for viewing skill details and resources
 export default function Result({ data }: ResultProps) {
     const navigate = useNavigate();
     const [openSkills, setOpenSkills] = useState<Set<string>>(new Set());
@@ -49,6 +50,7 @@ export default function Result({ data }: ResultProps) {
     const lackingKeywords = data.missing || [];
     const matchScore = data.matchScore ?? 0;
 
+    // The recommendation text from the analysis results, or a default message if no recommendation is provided
     const containerStyle: React.CSSProperties = {
         background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
         color: '#1a1a1a',
@@ -64,6 +66,7 @@ export default function Result({ data }: ResultProps) {
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
     };
 
+    // The recommendation text from the analysis results, or a default message if no recommendation is provided
     const headerStyle: React.CSSProperties = {
         display: 'flex',
         alignItems: 'center',
@@ -75,6 +78,7 @@ export default function Result({ data }: ResultProps) {
         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)'
     };
 
+    // The style for the back button in the header, including background, border, size, and hover effects
     const backBtnStyle: React.CSSProperties = {
         background: 'linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%)',
         border: 'none',

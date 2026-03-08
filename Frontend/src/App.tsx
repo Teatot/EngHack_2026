@@ -4,6 +4,7 @@ import { BackendResult } from "./types/general_interfaces";
 import { Home } from "./pages/Home";
 import Result from "./pages/Result";
 
+// The main App component that sets up the navigation and routing for the application, manages state for the analysis response and loading status, and defines the callback function for handling analysis requests to the backend API
 export default function App() {
   const [response, setResponse] = useState<BackendResult | null>(null);
   const [loading, setLoading] = useState(false);

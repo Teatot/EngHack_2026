@@ -5,6 +5,7 @@ export interface UploadedPdfData {
     }[];
 }
 
+// Function to send a POST request to the backend API to upload a single PDF file, including the file in the request body as FormData, and return a success or failure message based on the response
 export const uploadPDF = async (file: File | null) => {
     if (!file) {
         return { error: "failure" };
@@ -27,6 +28,7 @@ export const uploadPDF = async (file: File | null) => {
     }
 };
 
+// Function to send a POST request to the backend API to upload multiple PDF files, including the files in the request body as FormData, and return a success or failure message based on the response
 export const uploadPDFs = async (files: File[]) => {
     if (!files || !files.length) {
         return { error: "failure" };
@@ -51,6 +53,7 @@ export const uploadPDFs = async (files: File[]) => {
     }
 }
 
+// Function to send a DELETE request to the backend API to remove a PDF file, including the file path in the request body, and return a success or failure message based on the response
 export const removePDF = async (filepath: string) => {
     try {
         const response = await fetch("http://localhost:3000/api/uploader/uploaded-pdf", {
@@ -69,6 +72,7 @@ export const removePDF = async (filepath: string) => {
     }
 };
 
+// Function to fetch the list of uploaded PDFs from the backend API and return the structured response, or throw an error if the request fails
 export const getPDFs = async () => {
     try {
         const response = await fetch("http://localhost:3000/api/uploader/uploaded-pdf", {

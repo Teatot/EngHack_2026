@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { removePDF } from "../api/uploaderApi";
 import "./ResumeCard.less";
 
+/// Interface representing the props for the ResumeCard component, including the filename, file path, currently selected file, and callback functions for deleting and selecting files
 interface ResumeCardProp {
     filename: string;
     filepath: string;
@@ -10,6 +11,7 @@ interface ResumeCardProp {
     setFileSelected: any;
 }
 
+// Component representing a card for an uploaded resume, displaying the filename and providing options to select, view, or delete the file, with appropriate callbacks for each action
 export const ResumeCard = ({
     filename,
     filepath,
