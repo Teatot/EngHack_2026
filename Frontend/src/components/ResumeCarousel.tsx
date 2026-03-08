@@ -6,9 +6,11 @@ import "./ResumeCarousel.less";
 interface ResumeCarouselProp {
     fileSelected: string;
     setFileSelected: (value: string) => void;
+    /** Increment to force refetch (e.g. after new upload). */
+    uploadTrigger?: number;
 }
 
-export const ResumeCarousel = ({ fileSelected, setFileSelected }: ResumeCarouselProp) => {
+export const ResumeCarousel = ({ fileSelected, setFileSelected, uploadTrigger = 0 }: ResumeCarouselProp) => {
     const [ deleteFile, setDeleteFile ] = useState<number>(0);
     const [resumeData, setResumeData] = useState<UploadedPdfData>();
 
@@ -24,7 +26,7 @@ export const ResumeCarousel = ({ fileSelected, setFileSelected }: ResumeCarousel
         };
 
         loadData();
-    }, [deleteFile]);
+    }, [deleteFile, uploadTrigger]);
 
     if (!resumeData?.files.length) {
         return (

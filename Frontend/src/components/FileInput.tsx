@@ -3,7 +3,11 @@ import "./FileInput.less";
 import { uploadPDFs } from "../api/uploaderApi";
 import { getFileSizeLabel } from "../helper/util/fileOperations";
 
-export const FileInput = () => {
+interface FileInputProps {
+    onUploadSuccess?: () => void;
+}
+
+export const FileInput = ({ onUploadSuccess }: FileInputProps) => {
     const [files, setFiles] = useState<File[]>([]);
     const [result, setResult] = useState<string>("");
 
@@ -21,13 +25,15 @@ export const FileInput = () => {
             const { error } = await uploadPDFs(files);
             if (error === "failure") {
                 console.error("UPLOAD FAILED");
+            } else {
+                setResult("Success");
+                setFiles([]);
+                onUploadSuccess?.();
             }
-            setResult("Success");
-            setFiles([]);
         } catch (err) {
             console.error(err);
         }
-    }, [files]);
+    }, [files, onUploadSuccess]);
 
     return (
         <div className="fileInput__container">
