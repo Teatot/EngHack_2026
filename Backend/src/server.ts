@@ -5,7 +5,6 @@ import geminiRouter from "./routes/geminiAPI.route.js";
 import uploaderRouter from "./routes/uploader.route.js";
 import fileListRouter from "./routes/files.route.js";
 import scrapeRouter from "./routes/scrape.route.js";
-import logScrapeRouter from "./routes/logScrape.route.js";
 import path from "path";
 
 const app = express();

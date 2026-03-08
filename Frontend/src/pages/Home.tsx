@@ -4,6 +4,7 @@ import { ResumeCarousel } from "../components/ResumeCarousel";
 
 
 export const Home = () => {
+    // Disable buttons if none selected
     const [fileSelected, setFileSelected] = useState<string>("");
 
     return (
