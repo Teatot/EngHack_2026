@@ -8,6 +8,7 @@ export const Home = () => {
 
     return (
         <section className="home-main-shell">
+            <p>File Name Selected: {fileSelected}</p>
             <ResumeCarousel
                 fileSelected={fileSelected}
                 setFileSelected={setFileSelected}

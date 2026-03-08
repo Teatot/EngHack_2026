@@ -28,8 +28,11 @@ export const ResumeCard = ({
 
         if (result.error === "success") {
             setDeleteFile((currentValue: number) => currentValue + 1);
+            if (isSelected) {
+                setFileSelected("");
+            }
         }
-    }, [filepath, setDeleteFile]);
+    }, [filepath, isSelected, setDeleteFile, setFileSelected]);
 
     return (
         <div className="resumeCard__container">
