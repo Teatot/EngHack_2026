@@ -2,9 +2,15 @@ export interface Data {
     question: string;
     file: string;
 }
-  
+
+export interface Skill {
+    name: string;
+    improvements: string[];
+}
+
 export interface Response {
     recommendation: string;
-    links: string[];
-    linkNum: number;
+    matchScore: number;
+    have: Skill[];
+    missing: Skill[];
 }

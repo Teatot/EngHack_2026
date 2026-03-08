@@ -72,19 +72,43 @@ export async function sendRequest(data: Data) {
           recommendation: {
             type: "string",
           },
-          links: {
-            type: "array",
-            items: {
-              type: "string",
-              format: "uri",
-            },
-          },
-          linkNum: {
+          matchScore: {
             type: "integer",
             minimum: 0,
+            maximum: 100,
+          },
+          have: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                improvements: {
+                  type: "array",
+                  items: { type: "string" },
+                },
+              },
+              required: ["name", "improvements"],
+              additionalProperties: false,
+            },
+          },
+          missing: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                improvements: {
+                  type: "array",
+                  items: { type: "string" },
+                },
+              },
+              required: ["name", "improvements"],
+              additionalProperties: false,
+            },
           },
         },
-        required: ["recommendation", "links", "linkNum"],
+        required: ["recommendation", "matchScore", "have", "missing"],
         additionalProperties: false,
       },
     },

@@ -1,99 +1,75 @@
 import { useState } from "react";
-import { BackendResult, ScrapedPage } from "./types/general_interfaces";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
+import { BackendResult } from "./types/general_interfaces";
 import { Home } from "./pages/Home";
+import Result from "./pages/Result";
 
 export default function App() {
   const [response, setResponse] = useState<BackendResult | null>(null);
-  const [scrapeResult, setScrapeResult] = useState<ScrapedPage | null>(null);
-  const [scrapeError, setScrapeError] = useState<string | null>(null);
-  const [isScraping, setIsScraping] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [fileSelected, setFileSelected] = useState<string>("");
+  const navigate = useNavigate();
 
-  async function handleClick() {
-    const res = await fetch("http://localhost:3000/api/prompt-gemini", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        question: "Compare my uploaded pdf resume and the website for the job I'm looking at. Give me a recommendation on how I can be a better match for this job. and provide links to resources I can use.",
-      }),
-    });
-
-    if (!res.ok) {
-      console.error("Request failed", res.status);
-      return;
-    }
-
-    const data = (await res.json()) as { result: BackendResult };
-    console.log("Backend result:", data.result);
-    setResponse(data.result);
-  }
-
-  async function handleScrapeTab() {
-    if (isScraping) return;
-  
-    setScrapeError(null);
-    setIsScraping(true);
-    setScrapeResult(null);
-  
+  async function handleClick(fileName: string) {
+    setLoading(true);
     try {
-      if (!chrome?.tabs || !chrome?.scripting) {
-        throw new Error("Chrome extension APIs unavailable.");
-      }
-  
-      const [activeTab] = await chrome.tabs.query({
-        active: true,
-        currentWindow: true,
+      const res = await fetch("http://localhost:3000/api/prompt-gemini", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: "Compare my uploaded pdf resume and the website for the job I'm looking at. Give me a recommendation on how I can be a better match for this job. and provide links to resources I can use.",
+          file: fileName
+        }),
       });
-  
-      if (!activeTab?.id) {
-        throw new Error("No active tab found.");
+
+      if (!res.ok) {
+        console.error("Request failed", res.status);
+        return;
       }
-  
-      if (!activeTab.url || activeTab.url.startsWith("chrome://")) {
-        throw new Error("Cannot scrape this page.");
-      }
-  
-      const results = await chrome.scripting.executeScript({
-        target: { tabId: activeTab.id },
-        files: ["scrapeDOM.js"],
-      });
-  
-      const result = await chrome.tabs.sendMessage(activeTab.id, {
-        type: "SCRAPE_PAGE",
-      });
-  
-      if (!result) {
-        throw new Error("No scrape result returned.");
-      }
-  
-      setScrapeResult(result);
-      
-      // Send the scraped page data to the backend for logging
-      try {
-        await fetch("http://localhost:3000/api/scrape/send", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(result),
-        });
-      } catch (networkError) {
-        console.error("Failed to send scrape result to backend:", networkError);
-      }
-    } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Unknown scraping error";
-      console.error("Scrape failed:", message);
-      setScrapeError(message);
+
+      const data = (await res.json()) as { result: BackendResult };
+      console.log("Backend result:", data.result);
+      setResponse(data.result);
+      navigate("/result");
+    } catch (error) {
+      console.error("Error fetching analysis:", error);
     } finally {
-      setIsScraping(false);
+      setLoading(false);
     }
   }
+
+  const isAnalysisDisabled = !response || !fileSelected;
 
   return (
     <section className="app-card">
-      <Home/>
+      <nav className="nav-bar">
+        <NavLink to="/" className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}>Resume Upload</NavLink>
+        <NavLink
+          to={isAnalysisDisabled ? "#" : "/result"}
+          onClick={(e) => isAnalysisDisabled && e.preventDefault()}
+          className={({ isActive }) => `nav-button ${isActive ? 'active' : ''} ${isAnalysisDisabled ? 'disabled' : ''}`}
+          style={{
+            cursor: isAnalysisDisabled ? 'not-allowed' : 'pointer',
+            opacity: isAnalysisDisabled ? 0.5 : 1
+          }}
+        >
+          Analysis
+        </NavLink>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={
+          <Home
+            onAnalyze={handleClick}
+            loading={loading}
+            fileSelected={fileSelected}
+            setFileSelected={setFileSelected}
+          />
+        } />
+        <Route path="/result" element={<Result data={response} />} />
+      </Routes>
     </section>
   );
 }
