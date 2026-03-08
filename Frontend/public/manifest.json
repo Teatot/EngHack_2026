@@ -7,11 +7,25 @@
     "default_title": "Open App",
     "default_popup": "index.html"
   },
-  "permissions": ["scripting", "activeTab"],
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["scrapeDOM.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "scrapeDOM.js"
+      ]
     }
-  ]
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
 }
